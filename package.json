@@ -1,0 +1,13 @@
+{
+  "name": "los-mochis-golf-app",
+  "version": "1.0.0",
+  "description": "App para Los Mochis Country Club con ofuscación de código",
+  "main": "build.js",
+  "scripts": {
+    "build": "node build.js",
+    "deploy": "npm run build && firebase deploy"
+  },
+  "dependencies": {
+    "javascript-obfuscator": "^4.1.1"
+  }
+}

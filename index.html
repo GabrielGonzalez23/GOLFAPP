@@ -264,20 +264,26 @@
                 <div style="font-size: 0.75rem; color: var(--accent-color); font-weight: 700; margin-top: 8px;" id="profile-email"></div>
                 <div style="margin-top: 25px; display: flex; justify-content: space-between; border-bottom: 1px solid var(--glass-border); padding-bottom: 25px; padding-left: 10px; padding-right: 10px;">
                     <div style="text-align: center; flex: 1;">
-                        <div style="display: flex; align-items: center; justify-content: center; gap: 5px; margin-bottom: 2px;">
-                            <span style="font-size: 1.6rem; font-weight: 300; color: white;" id="profile-handicap-val">18</span>
-                            <i class="fas fa-pencil-alt" onclick="editHandicap()" style="cursor: pointer; font-size: 0.6rem; color: var(--accent-color); opacity: 0.8;"></i>
+                        <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 2px;">
+                            <span style="font-size: 1.6rem; font-weight: 300; color: white; cursor: pointer;" id="profile-handicap-val" onclick="showHandicapDetails()">18</span>
+                            <div style="display: flex; flex-direction: column; gap: 3px; align-items: center;">
+                                <i id="edit-handicap-pencil" class="fas fa-pencil-alt" onclick="editHandicap()" style="cursor: pointer; font-size: 0.55rem; color: var(--accent-color); opacity: 0.8;" title="Editar Hándicap Manual"></i>
+                                <i class="fas fa-info-circle" onclick="showHandicapDetails()" style="cursor: pointer; font-size: 0.55rem; color: #4caf50; opacity: 0.8;" title="Detalle Hándicap WHS"></i>
+                            </div>
                         </div>
-                        <div style="font-size: 0.55rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 2px; font-weight: 700;">Handicap</div>
+                        <div style="font-size: 0.55rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; cursor: pointer;" onclick="showHandicapDetails()">Handicap</div>
                     </div>
                     
                     <div style="width: 1px; height: 30px; background: var(--glass-border); align-self: center;"></div>
 
-                    <div style="text-align: center; flex: 1;">
-                        <div style="font-size: 1.6rem; font-weight: 300; color: white;" id="stat-total-display">0</div>
+                    <div style="text-align: center; flex: 1; cursor: pointer;" onclick="addSimulatedRound()" title="Simular Jugada Manual">
+                        <div style="display: flex; align-items: center; justify-content: center; gap: 6px; margin-bottom: 2px;">
+                            <span style="font-size: 1.6rem; font-weight: 300; color: white;" id="stat-total-display">0</span>
+                            <i class="fas fa-plus-circle" style="font-size: 0.6rem; color: #4caf50; opacity: 0.8;" title="Simular Jugada Manual"></i>
+                        </div>
                         <div style="font-size: 0.55rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 2px; font-weight: 700;">Rondas</div>
                     </div>
-
+                    
                     <div style="width: 1px; height: 30px; background: var(--glass-border); align-self: center;"></div>
 
                     <div style="text-align: center; flex: 1; cursor: pointer;" onclick="showHistoryList()">
@@ -306,7 +312,7 @@
                 <div style="font-size: 0.6rem; color: var(--text-secondary); font-weight: 800; letter-spacing: 2px; margin-bottom: 15px; opacity: 0.6;">ADMINISTRACIÓN & CLUB</div>
                 
                 <!-- PITCH DECK OCULTO TEMPORALMENTE (Para activar, quitar el display: none) -->
-                <div class="menu-item" onclick="showPitchDeck()" style="display: none; align-items: center; gap: 15px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); cursor: pointer;">
+                <div class="menu-item" onclick="showPitchDeck()" style="display: flex; align-items: center; gap: 15px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); cursor: pointer;">
                     <i class="fas fa-briefcase" style="color: var(--accent-color); font-size: 1.1rem; width: 25px; text-align: center;"></i>
                     <div style="flex: 1;">
                         <div style="font-size: 0.8rem; font-weight: 800; color: white;">PRESENTACIÓN CLUB</div>
@@ -567,7 +573,7 @@
                     <i class="fas fa-times"></i> CERRAR
                 </div>
                 <div id="landscape-title" style="flex: 1; text-align: center; font-size: 0.75rem; font-weight: 800; letter-spacing: 2px; color: var(--accent-color);">RESULTADOS DETALLADOS</div>
-                <div style="width: 80px;"></div>
+                <div id="landscape-group-selector" style="display: flex; align-items: center; justify-content: flex-end; min-width: 90px; margin-right: 15px;"></div>
             </div>
             <div id="landscape-scorecard-content" style="flex: 1; width: 100%; overflow: auto; padding: 0;">
                 <!-- Table goes here -->
