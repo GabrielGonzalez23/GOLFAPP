@@ -34,7 +34,7 @@
         
         <div class="auth-card" id="main-auth-card">
             <div class="auth-title" id="auth-main-title">BIENVENIDO</div>
-            <div class="auth-subtitle" id="auth-sub-title">Ingrese sus credenciales para acceder al club</div>
+            <div class="auth-subtitle" id="auth-sub-title">Ingrese sus credenciales para acceder</div>
             
             <div id="auth-error" class="error-message"></div>
 
@@ -132,7 +132,7 @@
                 <div class="game-name">Medal Play</div>
                 <div class="game-desc">Conteo de Golpes</div>
             </div>
-            <div class="game-card" onclick="showWolfInfo()">
+            <div class="game-card" onclick="selectGame('Wolf')">
                 <div class="game-icon-area">
                     <img src="wolf_icon.png" alt="Wolf" style="width: 3.5rem; height: 3.5rem;">
                 </div>
@@ -186,7 +186,7 @@
         <!-- WOLF INFO OVERLAY -->
         <div id="wolf-info-overlay" class="overlay">
             <div class="overlay-header">
-                <div class="back-btn" onclick="showScreen('home')"><i class="fas fa-chevron-left"></i> Volver</div>
+                <div class="back-btn" onclick="history.back()"><i class="fas fa-chevron-left"></i> Volver</div>
                 <div class="overlay-title">MODO LOBO</div>
                 <div style="width: 50px;"></div>
             </div>
@@ -212,13 +212,13 @@
                     <div><div style="font-weight: 700; font-size: 0.85rem;">Puntos por Hoyo</div><div style="font-size: 0.7rem; color: var(--text-secondary);">Con jugador: 1 punto. Solo (Lone Wolf): puntos dobles. ¡Alto riesgo, alta recompensa!</div></div>
                 </div>
             </div>
-            <button class="action-button" style="margin-top: 20px;" onclick="document.getElementById('wolf-info-overlay').classList.remove('active'); showScreen('setup-round');"><i class="fas fa-play" style="margin-right: 8px;"></i> JUGAR WOLF</button>
+            <button class="action-button" style="margin-top: 20px;" onclick="selectGame('Wolf');"><i class="fas fa-play" style="margin-right: 8px;"></i> JUGAR WOLF</button>
         </div>
 
         <!-- GAME OVERLAY -->
-        <div id="game-overlay" class="overlay" style="overflow-y: auto; padding-bottom: 80px;">
+        <div id="game-overlay" class="overlay">
             <div class="overlay-header">
-                <div class="back-btn" onclick="showScreen('home')"><i class="fas fa-chevron-left"></i> Volver</div>
+                <div class="back-btn" onclick="history.back()"><i class="fas fa-chevron-left"></i> Volver</div>
                 <div class="overlay-title" id="overlay-title">JUEGO EN VIVO</div>
                 <div style="width: 50px; text-align: right;">
                     <i class="fas fa-bars" id="game-hamburger-menu" style="font-size: 1.2rem; color: var(--accent-color); cursor: pointer;" onclick="toggleSummary(true)"></i>
@@ -281,7 +281,7 @@
                             <span style="font-size: 1.6rem; font-weight: 300; color: white;" id="stat-total-display">0</span>
                             <i class="fas fa-plus-circle" style="font-size: 0.6rem; color: #4caf50; opacity: 0.8;" title="Simular Jugada Manual"></i>
                         </div>
-                        <div style="font-size: 0.55rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 2px; font-weight: 700;">Rondas</div>
+                        <div style="font-size: 0.55rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 2px; font-weight: 700;">Quick Score</div>
                     </div>
                     
                     <div style="width: 1px; height: 30px; background: var(--glass-border); align-self: center;"></div>
@@ -312,7 +312,7 @@
                 <div style="font-size: 0.6rem; color: var(--text-secondary); font-weight: 800; letter-spacing: 2px; margin-bottom: 15px; opacity: 0.6;">ADMINISTRACIÓN & CLUB</div>
                 
                 <!-- PITCH DECK OCULTO TEMPORALMENTE (Para activar, quitar el display: none) -->
-                <div class="menu-item" onclick="showPitchDeck()" style="display: flex; align-items: center; gap: 15px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); cursor: pointer;">
+                <div class="menu-item" onclick="showPitchDeck()" style="display: none; align-items: center; gap: 15px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); cursor: pointer;">
                     <i class="fas fa-briefcase" style="color: var(--accent-color); font-size: 1.1rem; width: 25px; text-align: center;"></i>
                     <div style="flex: 1;">
                         <div style="font-size: 0.8rem; font-weight: 800; color: white;">PRESENTACIÓN CLUB</div>
@@ -334,11 +334,11 @@
                     <!-- HISTORY OVERLAY -->
             <div id="rounds-history-overlay" class="overlay">
                 <div class="overlay-header">
-                    <div class="back-btn" onclick="showScreen('profile')" style="padding: 10px; margin: -10px; display: inline-flex; align-items: center; gap: 5px; cursor: pointer;"><i class="fas fa-chevron-left"></i> Volver</div>
-                    <div class="overlay-title">HISTORIAL DE RONDAS</div>
+                    <div class="back-btn" onclick="history.back()" style="padding: 10px; margin: -10px; display: inline-flex; align-items: center; gap: 5px; cursor: pointer;"><i class="fas fa-chevron-left"></i> Volver</div>
+                    <div class="overlay-title">HISTORIAL</div>
                     <div style="width: 50px;"></div>
                 </div>
-                <div style="padding: 20px;">
+                <div style="padding: 10px 0;">
                     <div id="rounds-history-list"></div>
                 </div>
             </div>
@@ -367,7 +367,7 @@
         <!-- GROUP DETAILS OVERLAY (Quiet Luxury Design) -->
         <div id="group-details-overlay" class="overlay">
             <div class="overlay-header">
-                <div class="back-btn" onclick="showScreen('home')"><i class="fas fa-chevron-left"></i> Volver</div>
+                <div class="back-btn" onclick="history.back()"><i class="fas fa-chevron-left"></i> Volver</div>
                 <div class="overlay-title" id="group-detail-title">DETALLES DEL GRUPO</div>
                 <div style="width: 50px; text-align: right;">
                     <i class="fas fa-trash-alt" id="delete-group-btn" style="color: #ff4d4d; opacity: 0.6; cursor: pointer;"></i>
@@ -403,7 +403,7 @@
         <div id="setup-round-overlay" class="overlay">
             <div class="overlay-header">
                 <div class="back-btn" onclick="showScreen('home')"><i class="fas fa-chevron-left"></i> Volver</div>
-                <div class="overlay-title">NUEVA PARTIDA</div>
+                <div class="overlay-title">NUEVA JUGADA</div>
                 <div style="width: 50px;"></div>
             </div>
             <div style="padding: 15px; padding-bottom: 40px; overflow-y: auto;">
@@ -546,13 +546,13 @@
             </div>
         </div>
 
-        <div id="course-details-overlay" class="overlay"><div class="overlay-header"><div class="back-btn" onclick="document.getElementById('course-details-overlay').classList.remove('active')"><i class="fas fa-chevron-left"></i> Volver</div></div><div id="course-details-content"></div></div>
-        <div id="history-details-overlay" class="overlay"><div class="overlay-header"><div class="back-btn" onclick="document.getElementById('history-details-overlay').classList.remove('active')"><i class="fas fa-chevron-left"></i> Volver</div></div><div id="history-details-content"></div></div>
+        <div id="course-details-overlay" class="overlay"><div class="overlay-header"><div class="back-btn" onclick="history.back()"><i class="fas fa-chevron-left"></i> Volver</div></div><div id="course-details-content"></div></div>
+        <div id="history-details-overlay" class="overlay"><div class="overlay-header"><div class="back-btn" onclick="history.back()"><i class="fas fa-chevron-left"></i> Volver</div></div><div id="history-details-content"></div></div>
         
         <!-- GAME SETTINGS OVERLAY -->
         <div id="game-settings-overlay" class="overlay" style="z-index: 10000; display: flex; flex-direction: column; padding: 0 !important; overflow: hidden !important; background: var(--bg-color) !important;">
             <div class="overlay-header" style="flex-shrink: 0; margin: 0 !important; padding: calc(env(safe-area-inset-top, 0px) + 8px) 20px 12px 20px !important; min-height: 0 !important; border: none !important; background: var(--bg-color) !important; display: flex; align-items: center; justify-content: space-between;">
-                <div class="back-btn" onclick="document.getElementById('game-settings-overlay').classList.remove('active')" style="margin: 0 !important; padding: 5px 0 !important; font-size: 0.95rem;"><i class="fas fa-chevron-left"></i> Volver</div>
+                <div class="back-btn" onclick="history.back()" style="margin: 0 !important; padding: 5px 0 !important; font-size: 0.95rem;"><i class="fas fa-chevron-left"></i> Volver</div>
                 <div class="overlay-title" style="font-size: 1.05rem; font-weight: 800; letter-spacing: 1px; flex: 1; text-align: center;">AJUSTES DE JUGADA</div>
                 <div style="width: 50px;"></div>
             </div>
@@ -569,7 +569,7 @@
         <!-- FULLSCREEN LANDSCAPE SCORECARD -->
         <div id="landscape-scorecard-overlay" class="overlay" style="background: #000; z-index: 10000; display: flex; flex-direction: column; height: 100vh; padding: 0; padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom);">
             <div class="overlay-header" style="background: #121212; border-bottom: 1px solid var(--glass-border); margin-bottom: 0; padding: calc(15px + env(safe-area-inset-top, 0px)) 20px 15px 20px;">
-                <div class="back-btn" onclick="closeLandscapeScorecard()" style="background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 12px; margin-left: 15px;">
+                <div class="back-btn" onclick="history.back()" style="background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 12px; margin-left: 15px;">
                     <i class="fas fa-times"></i> CERRAR
                 </div>
                 <div id="landscape-title" style="flex: 1; text-align: center; font-size: 0.75rem; font-weight: 800; letter-spacing: 2px; color: var(--accent-color);">RESULTADOS DETALLADOS</div>
