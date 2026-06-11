@@ -146,21 +146,19 @@
                 <div class="game-name">Skins</div>
                 <div class="game-desc">Hole Stakes</div>
             </div>
-            <div class="game-card" style="opacity: 0.5; cursor: not-allowed; position: relative;" onclick="alertPremium('En Desarrollo', 'El modo Stableford estará disponible muy pronto.', 'fa-chart-line')">
-                <div style="position: absolute; top: 10px; right: 10px; background: var(--accent-color); color: white; font-size: 0.5rem; font-weight: 900; padding: 2px 6px; border-radius: 4px; letter-spacing: 1px;">PRÓXIMAMENTE</div>
+            <div class="game-card" onclick="selectGame('Stableford')" id="mode-card-Stableford">
                 <div class="game-icon-area">
-                    <i class="fas fa-chart-line game-icon" style="opacity: 0.3;"></i>
+                    <i class="fas fa-chart-line game-icon"></i>
                 </div>
                 <div class="game-name">Stableford</div>
                 <div class="game-desc">Juego por Puntos</div>
             </div>
-            <div class="game-card" style="opacity: 0.5; cursor: not-allowed; position: relative;" onclick="alertPremium('En Desarrollo', 'El modo Match Play estará disponible muy pronto.', 'fa-user-friends')">
-                <div style="position: absolute; top: 10px; right: 10px; background: var(--accent-color); color: white; font-size: 0.5rem; font-weight: 900; padding: 2px 6px; border-radius: 4px; letter-spacing: 1px;">PRÓXIMAMENTE</div>
+            <div class="game-card" onclick="alertPremium('Match Play', 'La funcionalidad de Match Play está en desarrollo.', 'fa-user-friends')" id="mode-card-MatchPlay" style="opacity: 0.6;">
                 <div class="game-icon-area">
-                    <i class="fas fa-user-friends game-icon" style="opacity: 0.3;"></i>
+                    <i class="fas fa-user-friends game-icon"></i>
                 </div>
                 <div class="game-name">Match Play</div>
-                <div class="game-desc">Uno contra Uno</div>
+                <div class="game-desc">En Desarrollo</div>
             </div>
         </div>
 
@@ -281,14 +279,14 @@
                             <span style="font-size: 1.6rem; font-weight: 300; color: white;" id="stat-total-display">0</span>
                             <i class="fas fa-plus-circle" style="font-size: 0.6rem; color: #4caf50; opacity: 0.8;" title="Simular Jugada Manual"></i>
                         </div>
-                        <div style="font-size: 0.55rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 2px; font-weight: 700;">Quick Score</div>
+                        <div style="font-size: 0.55rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 2px; font-weight: 700;">Post Score</div>
                     </div>
                     
                     <div style="width: 1px; height: 30px; background: var(--glass-border); align-self: center;"></div>
 
                     <div style="text-align: center; flex: 1; cursor: pointer;" onclick="showHistoryList()">
                         <div style="font-size: 1.6rem; font-weight: 300; color: var(--accent-color);" id="profile-history-count">0</div>
-                        <div style="font-size: 0.55rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 2px; font-weight: 700;">Historial</div>
+                        <div style="font-size: 0.55rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 2px; font-weight: 700;">Stats</div>
                     </div>
                 </div>
             </div>
@@ -335,7 +333,7 @@
             <div id="rounds-history-overlay" class="overlay">
                 <div class="overlay-header">
                     <div class="back-btn" onclick="history.back()" style="padding: 10px; margin: -10px; display: inline-flex; align-items: center; gap: 5px; cursor: pointer;"><i class="fas fa-chevron-left"></i> Volver</div>
-                    <div class="overlay-title">HISTORIAL</div>
+                    <div class="overlay-title">STATS</div>
                     <div style="width: 50px;"></div>
                 </div>
                 <div style="padding: 10px 0;">
@@ -427,10 +425,8 @@
                         <div class="game-card mini" id="setup-game-medal" onclick="setSetupGame('Medal')">Medal Play</div>
                         <div class="game-card mini" id="setup-game-wolf" onclick="setSetupGame('Wolf')">Wolf</div>
                         <div class="game-card mini" id="setup-game-skins" onclick="setSetupGame('Skins')">Skins</div>
-                        <div class="game-card mini" onclick="alertPremium('En Desarrollo', 'El modo Stableford estará disponible muy pronto.')" style="opacity: 0.4; position: relative; cursor: not-allowed; border-color: transparent;">
-                            Stableford
-                            <div style="position: absolute; top: -6px; right: -6px; background: var(--accent-color); color: white; font-size: 0.45rem; font-weight: 900; padding: 2px 5px; border-radius: 4px; letter-spacing: 1px;">DEV</div>
-                        </div>
+                        <div class="game-card mini" id="setup-game-stableford" onclick="setSetupGame('Stableford')">Stableford</div>
+                        <div class="game-card mini" id="setup-game-matchplay" onclick="alertPremium('Match Play', 'La funcionalidad de Match Play está en desarrollo.', 'fa-user-friends')" style="opacity: 0.6;">Match Play (En Desarrollo)</div>
                     </div>
                 </div>
 
@@ -477,13 +473,7 @@
             <div style="padding: 10px; padding-bottom: 60px;">
                 <div class="dashboard">
                     <label>Nombre del Campo</label>
-                    <input type="text" id="course-name" placeholder="Ej. Country Club Los Mochis" style="width: 100%; padding: 14px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 12px; color: white; margin-bottom: 15px;">
-                    
-                    <label>Número de Hoyos</label>
-                    <div style="display: flex; gap: 10px; margin-bottom: 10px;">
-                        <button id="course-h9-btn" onclick="setCourseHolesCount(9)" class="action-button" style="flex: 1; background: transparent; border: 1px solid var(--glass-border); height: 40px; font-size: 0.8rem;">9 HOYOS</button>
-                        <button id="course-h18-btn" onclick="setCourseHolesCount(18)" class="action-button" style="flex: 1; background: var(--accent-color); border: none; height: 40px; font-size: 0.8rem;">18 HOYOS</button>
-                    </div>
+                    <input type="text" id="course-name" placeholder="Ej. Country Club Los Mochis" style="width: 100%; padding: 14px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 12px; color: white;">
                 </div>
 
                 <div class="dashboard">
@@ -523,14 +513,39 @@
                     <label>Nombre / Color</label>
                     <input type="text" id="tee-setup-name" placeholder="Ej. Azules" style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 10px; color: white; margin-bottom: 15px;">
                     
-                    <div style="display: flex; gap: 10px;">
+                    <div style="font-size: 0.75rem; font-weight: 700; color: var(--accent-color); margin-top: 10px; margin-bottom: 5px;">VALORES TOTALES (18 HOYOS)</div>
+                    <div style="display: flex; gap: 10px; margin-bottom: 15px;">
                         <div style="flex: 1;">
-                            <label>Course Rating</label>
+                            <label style="font-size: 0.65rem; opacity: 0.8;">Course Rating</label>
                             <input type="number" id="tee-setup-rating" placeholder="72.0" step="0.1" style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 10px; color: white;">
                         </div>
                         <div style="flex: 1;">
-                            <label>Slope Rating</label>
+                            <label style="font-size: 0.65rem; opacity: 0.8;">Slope Rating</label>
                             <input type="number" id="tee-setup-slope" placeholder="113" style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 10px; color: white;">
+                        </div>
+                    </div>
+
+                    <div style="font-size: 0.75rem; font-weight: 700; color: var(--accent-color); margin-top: 10px; margin-bottom: 5px;">1ª VUELTA (FRONT 9)</div>
+                    <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                        <div style="flex: 1;">
+                            <label style="font-size: 0.65rem; opacity: 0.8;">Rating Front 9</label>
+                            <input type="number" id="tee-setup-rating-front9" placeholder="Ej. 34.5" step="0.1" style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 10px; color: white;">
+                        </div>
+                        <div style="flex: 1;">
+                            <label style="font-size: 0.65rem; opacity: 0.8;">Slope Front 9</label>
+                            <input type="number" id="tee-setup-slope-front9" placeholder="Ej. 114" style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 10px; color: white;">
+                        </div>
+                    </div>
+
+                    <div style="font-size: 0.75rem; font-weight: 700; color: var(--accent-color); margin-top: 10px; margin-bottom: 5px;">2ª VUELTA (BACK 9)</div>
+                    <div style="display: flex; gap: 10px; margin-bottom: 5px;">
+                        <div style="flex: 1;">
+                            <label style="font-size: 0.65rem; opacity: 0.8;">Rating Back 9</label>
+                            <input type="number" id="tee-setup-rating-back9" placeholder="Ej. 34.3" step="0.1" style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 10px; color: white;">
+                        </div>
+                        <div style="flex: 1;">
+                            <label style="font-size: 0.65rem; opacity: 0.8;">Slope Back 9</label>
+                            <input type="number" id="tee-setup-slope-back9" placeholder="Ej. 123" style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 10px; color: white;">
                         </div>
                     </div>
                 </div>
@@ -548,6 +563,59 @@
 
         <div id="course-details-overlay" class="overlay"><div class="overlay-header"><div class="back-btn" onclick="history.back()"><i class="fas fa-chevron-left"></i> Volver</div></div><div id="course-details-content"></div></div>
         <div id="history-details-overlay" class="overlay"><div class="overlay-header"><div class="back-btn" onclick="history.back()"><i class="fas fa-chevron-left"></i> Volver</div></div><div id="history-details-content"></div></div>
+
+        <!-- COURSE SEARCH OVERLAY -->
+        <div id="course-search-overlay" class="overlay" style="z-index: 60000; display: flex; flex-direction: column;">
+            <div class="overlay-header" style="flex-shrink: 0; padding: 20px;">
+                <div class="back-btn" onclick="history.back()"><i class="fas fa-chevron-left"></i> Volver</div>
+                <div class="overlay-title">SELECCIONAR CAMPO</div>
+                <div style="width: 50px;"></div>
+            </div>
+            <div style="flex: 1; padding: 20px; display: flex; flex-direction: column; overflow: hidden; gap: 15px;">
+                <div class="search-container" style="position: relative; flex-shrink: 0;">
+                    <i class="fas fa-search" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--text-secondary); font-size: 0.9rem;"></i>
+                    <input type="text" id="course-search-input" placeholder="Buscar campo por nombre..." onkeyup="filterCourseSearch()" style="width: 100%; padding: 14px 15px 14px 45px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 16px; color: white; font-size: 0.9rem; outline: none; transition: all 0.3s ease;">
+                </div>
+                <div id="course-search-results" style="flex: 1; overflow-y: auto; display: flex; flex-direction: column; padding-bottom: 20px;">
+                    <!-- Se llena dinámicamente -->
+                </div>
+                <button class="action-button" onclick="openSimNewCourseForm()" style="margin: 0; background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); font-weight: 800; flex-shrink: 0; height: 50px; border-radius: 16px;">
+                    <i class="fas fa-plus" style="margin-right: 8px;"></i> REGISTRAR NUEVO CAMPO
+                </button>
+            </div>
+        </div>
+
+        <!-- SIM NEW COURSE OVERLAY -->
+        <div id="sim-new-course-overlay" class="overlay" style="z-index: 70000; display: flex; flex-direction: column;">
+            <div class="overlay-header" style="flex-shrink: 0; padding: 20px 20px 10px 20px; border-bottom: 2px solid #00bcd4; margin-bottom: 15px;">
+                <div style="width: 50px;"></div>
+                <div class="overlay-title" style="font-family: 'Outfit', 'Inter', sans-serif; font-style: italic; text-transform: none; color: white;">New course</div>
+                <div class="back-btn" onclick="history.back()" style="color: var(--text-secondary); font-weight: 500;">Cancel</div>
+            </div>
+            <div style="flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 20px;">
+                <div class="new-course-form-group">
+                    <label>Course name</label>
+                    <input type="text" id="new-course-name" placeholder="Enter the name of the course">
+                </div>
+                <div class="new-course-form-group">
+                    <label>Tee name</label>
+                    <input type="text" id="new-course-tee-name" placeholder="Enter the name of the tee">
+                </div>
+                <div class="new-course-form-group">
+                    <label id="lbl-new-course-rating">Rating</label>
+                    <input type="number" step="0.1" id="new-course-rating" placeholder="Enter the rating">
+                </div>
+                <div class="new-course-form-group">
+                    <label id="lbl-new-course-slope">Slope</label>
+                    <input type="number" id="new-course-slope" placeholder="Enter the slope">
+                </div>
+                
+                <div style="text-align: center; margin-top: 20px; margin-bottom: 40px; flex-shrink: 0;">
+                    <span onclick="saveSimNewCourse()" style="color: #ff2d55; font-size: 1.25rem; font-weight: 700; cursor: pointer; text-transform: none; display: inline-block; padding: 12px 24px;">Save course</span>
+                </div>
+            </div>
+        </div>
+
         
         <!-- GAME SETTINGS OVERLAY -->
         <div id="game-settings-overlay" class="overlay" style="z-index: 10000; display: flex; flex-direction: column; padding: 0 !important; overflow: hidden !important; background: var(--bg-color) !important;">
@@ -616,6 +684,28 @@
                 <button id="modal-confirm" class="action-button" style="flex: 1;">OK</button>
             </div>
             <button id="modal-ok" class="action-button" style="display: none; width: 100%;">ENTENDIDO</button>
+        </div>
+    </div>
+
+    <!-- PREMIUM ALERT MODAL (Specifically for alerts, prompts, and confirmations to prevent overwriting the main premium modal) -->
+    <div id="premium-alert-modal" class="modal-overlay alert-modal">
+        <div class="modal-card">
+            <i class="fas fa-times" id="alert-modal-close-x" style="position: absolute; top: 18px; right: 22px; color: var(--text-secondary); opacity: 0.5; font-size: 1.1rem; cursor: pointer; padding: 5px;" onclick="document.getElementById('premium-alert-modal').classList.remove('active')"></i>
+            
+            <div id="alert-modal-header-container" style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 20px; margin-top: 10px;">
+                <div id="alert-modal-icon" style="font-size: 1.5rem; color: var(--accent-color); margin-bottom: 0;"><i class="fas fa-exclamation-circle"></i></div>
+                <h3 id="alert-modal-title" style="margin: 0; line-height: 1;">MENSAJE</h3>
+            </div>
+
+            <div id="alert-modal-message" style="color: var(--text-secondary); margin-bottom: 20px; max-height: 85vh; overflow-y: auto; text-align: left; padding: 0 5px;"></div>
+            <div id="alert-modal-input-container" style="display: none; margin-bottom: 20px; width: 100%;">
+                <input type="text" id="alert-modal-input" style="width: 100%; padding: 10px; background: #333; border: 1px solid #444; color: white;">
+            </div>
+            <div id="alert-modal-buttons" style="display: flex; gap: 10px; width: 100%;">
+                <button id="alert-modal-cancel" class="action-button" style="background: #333; flex: 1;">CANCELAR</button>
+                <button id="alert-modal-confirm" class="action-button" style="flex: 1;">OK</button>
+            </div>
+            <button id="alert-modal-ok" class="action-button" style="display: none; width: 100%;">ENTENDIDO</button>
         </div>
     </div>
 
